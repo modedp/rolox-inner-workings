@@ -1,0 +1,1 @@
+No Content: webpack:///ts/react/challenge/privateAccessToken/interface.ts
