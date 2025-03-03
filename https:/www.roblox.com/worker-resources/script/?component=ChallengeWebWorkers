@@ -1,0 +1,1041 @@
+const window = self;
+! function() {
+    var t = {
+            135: function(t, e, r) {
+                var i;
+                t = r.nmd(t);
+                var o = function(t) {
+                    "use strict";
+                    var e = 1e7,
+                        r = 9007199254740992,
+                        i = f(r),
+                        n = "0123456789abcdefghijklmnopqrstuvwxyz",
+                        s = "function" == typeof BigInt;
+
+                    function a(t, e, r, i) {
+                        return void 0 === t ? a[0] : void 0 !== e && (10 != +e || r) ? D(t, e, r, i) : F(t)
+                    }
+
+                    function u(t, e) {
+                        this.value = t, this.sign = e, this.isSmall = !1
+                    }
+
+                    function p(t) {
+                        this.value = t, this.sign = t <
+                            0, this.isSmall = !0
+                    }
+
+                    function h(t) {
+                        this.value = t
+                    }
+
+                    function l(t) {
+                        return -r < t && t < r
+                    }
+
+                    function f(t) {
+                        return t < 1e7 ? [t] : t < 1e14 ? [t % 1e7, Math.floor(t / 1e7)] : [t % 1e7, Math.floor(t / 1e7) % 1e7, Math.floor(t / 1e14)]
+                    }
+
+                    function y(t) {
+                        c(t);
+                        var r = t.length;
+                        if (r < 4 && q(t, i) < 0) switch (r) {
+                            case 0:
+                                return 0;
+                            case 1:
+                                return t[0];
+                            case 2:
+                                return t[0] + t[1] * e;
+                            default:
+                                return t[0] + (t[1] + t[2] * e) * e
+                        }
+                        return t
+                    }
+
+                    function c(t) {
+                        for (var e = t.length; 0 === t[--e];);
+                        t.length = e + 1
+                    }
+
+                    function v(t) {
+                        for (var e = new Array(t), r = -1; ++r < t;) e[r] = 0;
+                        return e
+                    }
+
+                    function g(t) {
+                        return t > 0 ? Math.floor(t) : Math.ceil(t)
+                    }
+
+                    function m(t, r) {
+                        var i, o, n = t.length,
+                            s = r.length,
+                            a = new Array(n),
+                            u = 0,
+                            p = e;
+                        for (o = 0; o < s; o++) u = (i = t[o] + r[o] + u) > = p ? 1 : 0, a[o] = i - u * p;
+                        for (; o <
+                            n;) u = (i = t[o] + u) === p ? 1 : 0, a[o++] = i - u * p;
+                        return u >
+                            0 && a.push(u), a
+                    }
+
+                    function d(t, e) {
+                        return t.length >= e.length ? m(t, e) : m(e, t)
+                    }
+
+                    function b(t, r) {
+                        var i, o, n = t.length,
+                            s = new Array(n),
+                            a = e;
+                        for (o = 0; o <
+                            n; o++) i = t[o] - a + r, r = Math.floor(i / a), s[o] = i - r * a, r += 1;
+                        for (; r >
+                            0;) s[o++] = r % a, r = Math.floor(r / a);
+                        return s
+                    }
+
+                    function w(t, r) {
+                        var i, o, n = t.length,
+                            s = r.length,
+                            a = new Array(n),
+                            u = 0,
+                            p = e;
+                        for (i = 0; i <
+                            s; i++)(o = t[i] - u - r[i]) < 0 ? (o += p, u = 1) : u = 0, a[i] = o;
+                        for (i = s; i < n; i++) {
+                            if (!((o = t[i] - u) < 0)) {
+                                a[i++] = o;
+                                break
+                            }
+                            o += p, a[i] = o
+                        }
+                        for (; i < n; i++) a[i] = t[i];
+                        return c(a), a
+                    }
+
+                    function M(t, r, i) {
+                        var o, n, s = t.length,
+                            a = new Array(s),
+                            h = -r,
+                            l = e;
+                        for (o = 0; o < s; o++) n = t[o] + h, h = Math.floor(n / l), n %= l, a[o] = n < 0 ? n + l : n;
+                        return "number" == typeof(a = y(a)) ? (i && (a = -a), new p(a)) : new u(a, i)
+                    }
+
+                    function S(t, r) {
+                        var i, o, n, s, a = t.length,
+                            u = r.length,
+                            p = v(a + u),
+                            h = e;
+                        for (n = 0; n < a; ++n) {
+                            s = t[n];
+                            for (var l = 0; l < u; ++l) i = s * r[l] + p[n + l], o = Math.floor(i / h), p[n + l] = i - o * h, p[n + l + 1] += o
+                        }
+                        return c(p), p
+                    }
+
+                    function E(t, r) {
+                        var i, o, n = t.length,
+                            s = new Array(n),
+                            a = e,
+                            u = 0;
+                        for (o = 0; o < n; o++) i = t[o] * r + u, u = Math.floor(i / a), s[o] = i - u * a;
+                        for (; u > 0;) s[o++] = u % a, u = Math.floor(u / a);
+                        return s
+                    }
+
+                    function L(t, e) {
+                        for (var r = []; e-- > 0;) r.push(0);
+                        return r.concat(t)
+                    }
+
+                    function T(t, e) {
+                        var r = Math.max(t.length, e.length);
+                        if (r <= 30) return S(t, e);
+                        r = Math.ceil(r / 2);
+                        var i = t.slice(r),
+                            o = t.slice(0, r),
+                            n = e.slice(r),
+                            s = e.slice(0, r),
+                            a = T(o, s),
+                            u = T(i, n),
+                            p = T(d(o, i), d(s, n)),
+                            h = d(d(a, L(w(w(p, a), u), r)), L(u, 2 * r));
+                        return c(h), h
+                    }
+
+                    function k(t, r, i) {
+                        return new u(t < e ? E(r, t) : S(r, f(t)), i)
+                    }
+
+                    function N(t) {
+                        var r, i, o, n, s = t.length,
+                            a = v(s + s),
+                            u = e;
+                        for (o = 0; o < s; o++) {
+                            i = 0 - (n = t[o]) * n;
+                            for (var p = o; p < s; p++) r = n * t[p] * 2 + a[o + p] + i, i = Math.floor(r / u), a[o + p] = r - i * u;
+                            a[o + s] = i
+                        }
+                        return c(a), a
+                    }
+
+                    function P(t, e) {
+                        var r, i, o, n, s = t.length,
+                            a = v(s);
+                        for (o = 0, r = s - 1; r >= 0; --r) o = (n = 1e7 * o + t[r]) - (i = g(n / e)) * e, a[r] = 0 | i;
+                        return [a, 0 | o]
+                    }
+
+                    function I(t, r) {
+                        var i, o = F(r);
+                        if (s) return [new h(t.value / o.value), new h(t.value % o.value)];
+                        var n, l = t.value,
+                            m = o.value;
+                        if (0 === m) throw new Error("Cannot divide by zero");
+                        if (t.isSmall) return o.isSmall ? [new p(g(l / m)), new p(l % m)] : [a[0], t];
+                        if (o.isSmall) {
+                            if (1 === m) return [t, a[0]];
+                            if (-1 == m) return [t.negate(), a[0]];
+                            var d = Math.abs(m);
+                            if (d < e) {
+                                n = y((i = P(l, d))[0]);
+                                var b = i[1];
+                                return t.sign && (b = -b), "number" == typeof n ? (t.sign !== o.sign && (n = -n), [new p(n), new p(b)]) : [new u(n, t.sign !== o.sign), new p(b)]
+                            }
+                            m = f(d)
+                        }
+                        var M = q(l, m);
+                        if (-1 === M) return [a[0], t];
+                        if (0 === M) return [a[t.sign === o.sign ? 1 : -1], a[0]];
+                        n = (i = l.length + m.length <= 200 ? function(t, r) {
+                            var i, o, n, s, a, u, p, h = t.length,
+                                l = r.length,
+                                f = e,
+                                c = v(r.length),
+                                g = r[l - 1],
+                                m = Math.ceil(f / (2 * g)),
+                                d = E(t, m),
+                                b = E(r, m);
+                            for (d.length <= h && d.push(0), b.push(0), g = b[l - 1], o = h - l; o > = 0; o--) {
+                                for (i = f - 1, d[o + l] !== g && (i = Math.floor((d[o + l] * f + d[o + l - 1]) / g)), n = 0, s = 0, u = b.length, a = 0; a <
+                                    u; a++) n += i * b[a], p = Math.floor(n / f), s += d[o + a] - (n - p * f), n = p, s < 0 ? (d[o + a] = s + f, s = -1) : (d[o + a] = s, s = 0);
+                                for (; 0 !== s;) {
+                                    for (i -= 1, n = 0, a = 0; a < u; a++)(n += d[o + a] - f + b[a]) < 0 ? (d[o + a] = n + f, n = 0) : (d[o + a] = n, n = 1);
+                                    s += n
+                                }
+                                c[o] = i
+                            }
+                            return d = P(d, m)[0], [y(c), y(d)]
+                        }(l, m) : function(t, r) {
+                            for (var i, o, n, s, a, u = t.length, p = r.length, h = [], l = [], f = e; u;)
+                                if (l.unshift(t[--u]), c(l), q(l, r) < 0) h.push(0);
+                                else {
+                                    n = l[(o = l.length) - 1] * f + l[o - 2], s = r[p - 1] * f + r[p - 2], o >
+                                        p && (n = (n + 1) * f), i = Math.ceil(n / s);
+                                    do {
+                                        if (q(a = E(r, i), l) <=
+                                            0) break;
+                                        i--
+                                    } while (i);
+                                    h.push(i), l = w(l, a)
+                                } return h.reverse(), [y(h), y(l)]
+                        }(l, m))[0];
+                        var S = t.sign !== o.sign,
+                            L = i[1],
+                            T = t.sign;
+                        return "number" == typeof n ? (S && (n = -n), n = new p(n)) : n = new u(n, S), "number" == typeof L ? (T && (L = -L), L = new p(L)) : L = new u(L, T), [n, L]
+                    }
+
+                    function q(t, e) {
+                        if (t.length !== e.length) return t.length >
+                            e.length ? 1 : -1;
+                        for (var r = t.length - 1; r >= 0; r--)
+                            if (t[r] !== e[r]) return t[r] > e[r] ? 1 : -1;
+                        return 0
+                    }
+
+                    function A(t) {
+                        var e = t.abs();
+                        return !e.isUnit() && (!!(e.equals(2) || e.equals(3) || e.equals(5)) || !(e.isEven() || e.isDivisibleBy(3) || e.isDivisibleBy(5)) && (!!e.lesser(49) || void 0))
+                    }
+
+                    function O(t, e) {
+                        for (var r, i, n, s = t.prev(), a = s, u = 0; a.isEven();) a = a.divide(2), u++;
+                        t: for (i = 0; i <
+                            e.length; i++)
+                            if (!t.lesser(e[i]) && !(n = o(e[i]).modPow(a, t)).isUnit() && !n.equals(s)) {
+                                for (r = u - 1; 0 != r; r--) {
+                                    if ((n = n.square().mod(t)).isUnit()) return !1;
+                                    if (n.equals(s)) continue t
+                                }
+                                return !1
+                            }
+                        return !0
+                    }
+                    u.prototype = Object.create(a.prototype), p.prototype = Object.create(a.prototype), h.prototype = Object.create(a.prototype), u.prototype.add = function(t) {
+                        var e = F(t);
+                        if (this.sign !== e.sign) return this.subtract(e.negate());
+                        var r = this.value,
+                            i = e.value;
+                        return e.isSmall ? new u(b(r, Math.abs(i)), this.sign) : new u(d(r, i), this.sign)
+                    }, u.prototype.plus = u.prototype.add, p.prototype.add = function(t) {
+                        var e = F(t),
+                            r = this.value;
+                        if (r < 0 !== e.sign) return this.subtract(e.negate());
+                        var i = e.value;
+                        if (e.isSmall) {
+                            if (l(r + i)) return new p(r + i);
+                            i = f(Math.abs(i))
+                        }
+                        return new u(b(i, Math.abs(r)), r < 0)
+                    }, p.prototype.plus = p.prototype.add, h.prototype.add = function(t) {
+                        return new h(this.value + F(t).value)
+                    }, h.prototype.plus = h.prototype.add, u.prototype.subtract = function(t) {
+                        var e = F(t);
+                        if (this.sign !== e.sign) return this.add(e.negate());
+                        var r = this.value,
+                            i = e.value;
+                        return e.isSmall ? M(r, Math.abs(i), this.sign) : function(t, e, r) {
+                            var i;
+                            return q(t, e) > = 0 ? i = w(t, e) : (i = w(e, t), r = !r), "number" == typeof(i = y(i)) ? (r && (i = -i), new p(i)) : new u(i, r)
+                        }(r, i, this.sign)
+                    }, u.prototype.minus = u.prototype.subtract, p.prototype.subtract = function(t) {
+                        var e = F(t),
+                            r = this.value;
+                        if (r <
+                            0 !== e.sign) return this.add(e.negate());
+                        var i = e.value;
+                        return e.isSmall ? new p(r - i) : M(i, Math.abs(r), r > = 0)
+                    }, p.prototype.minus = p.prototype.subtract, h.prototype.subtract = function(t) {
+                        return new h(this.value - F(t).value)
+                    }, h.prototype.minus = h.prototype.subtract, u.prototype.negate = function() {
+                        return new u(this.value, !this.sign)
+                    }, p.prototype.negate = function() {
+                        var t = this.sign,
+                            e = new p(-this.value);
+                        return e.sign = !t, e
+                    }, h.prototype.negate = function() {
+                        return new h(-this.value)
+                    }, u.prototype.abs = function() {
+                        return new u(this.value, !1)
+                    }, p.prototype.abs = function() {
+                        return new p(Math.abs(this.value))
+                    }, h.prototype.abs = function() {
+                        return new h(this.value >= 0 ? this.value : -this.value)
+                    }, u.prototype.multiply = function(t) {
+                        var r, i, o, n = F(t),
+                            s = this.value,
+                            p = n.value,
+                            h = this.sign !== n.sign;
+                        if (n.isSmall) {
+                            if (0 === p) return a[0];
+                            if (1 === p) return this;
+                            if (-1 === p) return this.negate();
+                            if ((r = Math.abs(p)) <
+                                e) return new u(E(s, r), h);
+                            p = f(r)
+                        }
+                        return i = s.length, o = p.length, new u(-.012 * i - .012 * o + 15e-6 * i * o >
+                            0 ? T(s, p) : S(s, p), h)
+                    }, u.prototype.times = u.prototype.multiply, p.prototype._multiplyBySmall = function(t) {
+                        return l(t.value * this.value) ? new p(t.value * this.value) : k(Math.abs(t.value), f(Math.abs(this.value)), this.sign !== t.sign)
+                    }, u.prototype._multiplyBySmall = function(t) {
+                        return 0 === t.value ? a[0] : 1 === t.value ? this : -1 === t.value ? this.negate() : k(Math.abs(t.value), this.value, this.sign !== t.sign)
+                    }, p.prototype.multiply = function(t) {
+                        return F(t)._multiplyBySmall(this)
+                    }, p.prototype.times = p.prototype.multiply, h.prototype.multiply = function(t) {
+                        return new h(this.value * F(t).value)
+                    }, h.prototype.times = h.prototype.multiply, u.prototype.square = function() {
+                        return new u(N(this.value), !1)
+                    }, p.prototype.square = function() {
+                        var t = this.value * this.value;
+                        return l(t) ? new p(t) : new u(N(f(Math.abs(this.value))), !1)
+                    }, h.prototype.square = function(t) {
+                        return new h(this.value * this.value)
+                    }, u.prototype.divmod = function(t) {
+                        var e = I(this, t);
+                        return {
+                            quotient: e[0],
+                            remainder: e[1]
+                        }
+                    }, h.prototype.divmod = p.prototype.divmod = u.prototype.divmod, u.prototype.divide = function(t) {
+                        return I(this, t)[0]
+                    }, h.prototype.over = h.prototype.divide = function(t) {
+                        return new h(this.value / F(t).value)
+                    }, p.prototype.over = p.prototype.divide = u.prototype.over = u.prototype.divide, u.prototype.mod = function(t) {
+                        return I(this, t)[1]
+                    }, h.prototype.mod = h.prototype.remainder = function(t) {
+                        return new h(this.value % F(t).value)
+                    }, p.prototype.remainder = p.prototype.mod = u.prototype.remainder = u.prototype.mod, u.prototype.pow = function(t) {
+                        var e, r, i, o = F(t),
+                            n = this.value,
+                            s = o.value;
+                        if (0 === s) return a[1];
+                        if (0 === n) return a[0];
+                        if (1 === n) return a[1];
+                        if (-1 === n) return o.isEven() ? a[1] : a[-1];
+                        if (o.sign) return a[0];
+                        if (!o.isSmall) throw new Error("The exponent " + o.toString() + " is too large.");
+                        if (this.isSmall && l(e = Math.pow(n, s))) return new p(g(e));
+                        for (r = this, i = a[1]; !0 & s && (i = i.times(r), --s), 0 !== s;) s /= 2, r = r.square();
+                        return i
+                    }, p.prototype.pow = u.prototype.pow, h.prototype.pow = function(t) {
+                        var e = F(t),
+                            r = this.value,
+                            i = e.value,
+                            o = BigInt(0),
+                            n = BigInt(1),
+                            s = BigInt(2);
+                        if (i === o) return a[1];
+                        if (r === o) return a[0];
+                        if (r === n) return a[1];
+                        if (r === BigInt(-1)) return e.isEven() ? a[1] : a[-1];
+                        if (e.isNegative()) return new h(o);
+                        for (var u = this, p = a[1];
+                            (i & n) === n && (p = p.times(u), --i), i !== o;) i /= s, u = u.square();
+                        return p
+                    }, u.prototype.modPow = function(t, e) {
+                        if (t = F(t), (e = F(e)).isZero()) throw new Error("Cannot take modPow with modulus 0");
+                        var r = a[1],
+                            i = this.mod(e);
+                        for (t.isNegative() && (t = t.multiply(a[-1]), i = i.modInv(e)); t.isPositive();) {
+                            if (i.isZero()) return a[0];
+                            t.isOdd() && (r = r.multiply(i).mod(e)), t = t.divide(2), i = i.square().mod(e)
+                        }
+                        return r
+                    }, h.prototype.modPow = p.prototype.modPow = u.prototype.modPow, u.prototype.compareAbs = function(t) {
+                        var e = F(t),
+                            r = this.value,
+                            i = e.value;
+                        return e.isSmall ? 1 : q(r, i)
+                    }, p.prototype.compareAbs = function(t) {
+                        var e = F(t),
+                            r = Math.abs(this.value),
+                            i = e.value;
+                        return e.isSmall ? r === (i = Math.abs(i)) ? 0 : r > i ? 1 : -1 : -1
+                    }, h.prototype.compareAbs = function(t) {
+                        var e = this.value,
+                            r = F(t).value;
+                        return (e = e >= 0 ? e : -e) === (r = r >= 0 ? r : -r) ? 0 : e > r ? 1 : -1
+                    }, u.prototype.compare = function(t) {
+                        if (t === 1 / 0) return -1;
+                        if (t === -1 / 0) return 1;
+                        var e = F(t),
+                            r = this.value,
+                            i = e.value;
+                        return this.sign !== e.sign ? e.sign ? 1 : -1 : e.isSmall ? this.sign ? -1 : 1 : q(r, i) * (this.sign ? -1 : 1)
+                    }, u.prototype.compareTo = u.prototype.compare, p.prototype.compare = function(t) {
+                        if (t === 1 / 0) return -1;
+                        if (t === -1 / 0) return 1;
+                        var e = F(t),
+                            r = this.value,
+                            i = e.value;
+                        return e.isSmall ? r == i ? 0 : r > i ? 1 : -1 : r <
+                            0 !== e.sign ? r < 0 ? -1 : 1 : r < 0 ? 1 : -1
+                    }, p.prototype.compareTo = p.prototype.compare, h.prototype.compare = function(t) {
+                        if (t === 1 / 0) return -1;
+                        if (t === -1 / 0) return 1;
+                        var e = this.value,
+                            r = F(t).value;
+                        return e === r ? 0 : e >
+                            r ? 1 : -1
+                    }, h.prototype.compareTo = h.prototype.compare, u.prototype.equals = function(t) {
+                        return 0 === this.compare(t)
+                    }, h.prototype.eq = h.prototype.equals = p.prototype.eq = p.prototype.equals = u.prototype.eq = u.prototype.equals, u.prototype.notEquals = function(t) {
+                        return 0 !== this.compare(t)
+                    }, h.prototype.neq = h.prototype.notEquals = p.prototype.neq = p.prototype.notEquals = u.prototype.neq = u.prototype.notEquals, u.prototype.greater = function(t) {
+                        return this.compare(t) > 0
+                    }, h.prototype.gt = h.prototype.greater = p.prototype.gt = p.prototype.greater = u.prototype.gt = u.prototype.greater, u.prototype.lesser = function(t) {
+                        return this.compare(t) <
+                            0
+                    }, h.prototype.lt = h.prototype.lesser = p.prototype.lt = p.prototype.lesser = u.prototype.lt = u.prototype.lesser, u.prototype.greaterOrEquals = function(t) {
+                        return this.compare(t) > = 0
+                    }, h.prototype.geq = h.prototype.greaterOrEquals = p.prototype.geq = p.prototype.greaterOrEquals = u.prototype.geq = u.prototype.greaterOrEquals, u.prototype.lesserOrEquals = function(t) {
+                        return this.compare(t) <=
+                            0
+                    }, h.prototype.leq = h.prototype.lesserOrEquals = p.prototype.leq = p.prototype.lesserOrEquals = u.prototype.leq = u.prototype.lesserOrEquals, u.prototype.isEven = function() {
+                        return 0 == (1 & this.value[0])
+                    }, p.prototype.isEven = function() {
+                        return 0 == (1 & this.value)
+                    }, h.prototype.isEven = function() {
+                        return (this.value & BigInt(1)) === BigInt(0)
+                    }, u.prototype.isOdd = function() {
+                        return 1 == (1 & this.value[0])
+                    }, p.prototype.isOdd = function() {
+                        return 1 == (1 & this.value)
+                    }, h.prototype.isOdd = function() {
+                        return (this.value & BigInt(1)) === BigInt(1)
+                    }, u.prototype.isPositive = function() {
+                        return !this.sign
+                    }, p.prototype.isPositive = function() {
+                        return this.value >
+                            0
+                    }, h.prototype.isPositive = p.prototype.isPositive, u.prototype.isNegative = function() {
+                        return this.sign
+                    }, p.prototype.isNegative = function() {
+                        return this.value <
+                            0
+                    }, h.prototype.isNegative = p.prototype.isNegative, u.prototype.isUnit = function() {
+                        return !1
+                    }, p.prototype.isUnit = function() {
+                        return 1 === Math.abs(this.value)
+                    }, h.prototype.isUnit = function() {
+                        return this.abs().value === BigInt(1)
+                    }, u.prototype.isZero = function() {
+                        return !1
+                    }, p.prototype.isZero = function() {
+                        return 0 === this.value
+                    }, h.prototype.isZero = function() {
+                        return this.value === BigInt(0)
+                    }, u.prototype.isDivisibleBy = function(t) {
+                        var e = F(t);
+                        return !e.isZero() && (!!e.isUnit() || (0 === e.compareAbs(2) ? this.isEven() : this.mod(e).isZero()))
+                    }, h.prototype.isDivisibleBy = p.prototype.isDivisibleBy = u.prototype.isDivisibleBy, u.prototype.isPrime = function(e) {
+                        var r = A(this);
+                        if (r !== t) return r;
+                        var i = this.abs(),
+                            n = i.bitLength();
+                        if (n <= 64) return O(i, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37]);
+                        for (var s = Math.log(2) * n.toJSNumber(), a = Math.ceil(!0 === e ? 2 * Math.pow(s, 2) : s), u = [], p = 0; p < a; p++) u.push(o(p + 2));
+                        return O(i, u)
+                    }, h.prototype.isPrime = p.prototype.isPrime = u.prototype.isPrime, u.prototype.isProbablePrime = function(e, r) {
+                        var i = A(this);
+                        if (i !== t) return i;
+                        for (var n = this.abs(), s = e === t ? 5 : e, a = [], u = 0; u < s; u++) a.push(o.randBetween(2, n.minus(2), r));
+                        return O(n, a)
+                    }, h.prototype.isProbablePrime = p.prototype.isProbablePrime = u.prototype.isProbablePrime, u.prototype.modInv = function(t) {
+                        for (var e, r, i, n = o.zero, s = o.one, a = F(t), u = this.abs(); !u.isZero();) e = a.divide(u), r = n, i = a, n = s, a = u, s = r.subtract(e.multiply(s)), u = i.subtract(e.multiply(u));
+                        if (!a.isUnit()) throw new Error(this.toString() + " and " + t.toString() + " are not co-prime");
+                        return -1 === n.compare(0) && (n = n.add(t)), this.isNegative() ? n.negate() : n
+                    }, h.prototype.modInv = p.prototype.modInv = u.prototype.modInv, u.prototype.next = function() {
+                        var t = this.value;
+                        return this.sign ? M(t, 1, this.sign) : new u(b(t, 1), this.sign)
+                    }, p.prototype.next = function() {
+                        var t = this.value;
+                        return t + 1 < r ? new p(t + 1) : new u(i, !1)
+                    }, h.prototype.next = function() {
+                        return new h(this.value + BigInt(1))
+                    }, u.prototype.prev = function() {
+                        var t = this.value;
+                        return this.sign ? new u(b(t, 1), !0) : M(t, 1, this.sign)
+                    }, p.prototype.prev = function() {
+                        var t = this.value;
+                        return t - 1 >
+                            -r ? new p(t - 1) : new u(i, !0)
+                    }, h.prototype.prev = function() {
+                        return new h(this.value - BigInt(1))
+                    };
+                    for (var B = [1]; 2 * B[B.length - 1] <=
+                        e;) B.push(2 * B[B.length - 1]);
+                    var z = B.length,
+                        R = B[z - 1];
+
+                    function _(t) {
+                        return Math.abs(t) <= e
+                    }
+
+                    function Z(t, e, r) {
+                        e = F(e);
+                        for (var i = t.isNegative(), n = e.isNegative(), s = i ? t.not() : t, a = n ? e.not() : e, u = 0, p = 0, h = null, l = null, f = []; !s.isZero() || !a.isZero();) u = (h = I(s, R))[1].toJSNumber(), i && (u = R - 1 - u), p = (l = I(a, R))[1].toJSNumber(), n && (p = R - 1 - p), s = h[0], a = l[0], f.push(r(u, p));
+                        for (var y = 0 !== r(i ? 1 : 0, n ? 1 : 0) ? o(-1) : o(0), c = f.length - 1; c >= 0; c -= 1) y = y.multiply(R).add(o(f[c]));
+                        return y
+                    }
+                    u.prototype.shiftLeft = function(t) {
+                        var e = F(t).toJSNumber();
+                        if (!_(e)) throw new Error(String(e) + " is too large for shifting.");
+                        if (e < 0) return this.shiftRight(-e);
+                        var r = this;
+                        if (r.isZero()) return r;
+                        for (; e > = z;) r = r.multiply(R), e -= z - 1;
+                        return r.multiply(B[e])
+                    }, h.prototype.shiftLeft = p.prototype.shiftLeft = u.prototype.shiftLeft, u.prototype.shiftRight = function(t) {
+                        var e, r = F(t).toJSNumber();
+                        if (!_(r)) throw new Error(String(r) + " is too large for shifting.");
+                        if (r <
+                            0) return this.shiftLeft(-r);
+                        for (var i = this; r > = z;) {
+                            if (i.isZero() || i.isNegative() && i.isUnit()) return i;
+                            i = (e = I(i, R))[1].isNegative() ? e[0].prev() : e[0], r -= z - 1
+                        }
+                        return (e = I(i, B[r]))[1].isNegative() ? e[0].prev() : e[0]
+                    }, h.prototype.shiftRight = p.prototype.shiftRight = u.prototype.shiftRight, u.prototype.not = function() {
+                        return this.negate().prev()
+                    }, h.prototype.not = p.prototype.not = u.prototype.not, u.prototype.and = function(t) {
+                        return Z(this, t, (function(t, e) {
+                            return t & e
+                        }))
+                    }, h.prototype.and = p.prototype.and = u.prototype.and, u.prototype.or = function(t) {
+                        return Z(this, t, (function(t, e) {
+                            return t | e
+                        }))
+                    }, h.prototype.or = p.prototype.or = u.prototype.or, u.prototype.xor = function(t) {
+                        return Z(this, t, (function(t, e) {
+                            return t ^ e
+                        }))
+                    }, h.prototype.xor = p.prototype.xor = u.prototype.xor;
+                    var x = 1 <<
+                        30;
+
+                    function H(t) {
+                        var r = t.value,
+                            i = "number" == typeof r ? r | x : "bigint" == typeof r ? r | BigInt(x) : r[0] + r[1] * e | 1073758208;
+                        return i & -i
+                    }
+
+                    function C(t, e) {
+                        if (e.compareTo(t) <= 0) {
+                            var r = C(t, e.square(e)),
+                                i = r.p,
+                                n = r.e,
+                                s = i.multiply(e);
+                            return s.compareTo(t) <= 0 ? {
+                                p: s,
+                                e: 2 * n + 1
+                            } : {
+                                p: i,
+                                e: 2 * n
+                            }
+                        }
+                        return {
+                            p: o(1),
+                            e: 0
+                        }
+                    }
+
+                    function U(t, e) {
+                        return t = F(t), e = F(e), t.greater(e) ? t : e
+                    }
+
+                    function G(t, e) {
+                        return t = F(t), e = F(e), t.lesser(e) ? t : e
+                    }
+
+                    function J(t, e) {
+                        if (t = F(t).abs(), e = F(e).abs(), t.equals(e)) return t;
+                        if (t.isZero()) return e;
+                        if (e.isZero()) return t;
+                        for (var r, i, o = a[1]; t.isEven() && e.isEven();) r = G(H(t), H(e)), t = t.divide(r), e = e.divide(r), o = o.multiply(r);
+                        for (; t.isEven();) t = t.divide(H(t));
+                        do {
+                            for (; e.isEven();) e = e.divide(H(e));
+                            t.greater(e) && (i = e, e = t, t = i), e = e.subtract(t)
+                        } while (!e.isZero());
+                        return o.isUnit() ? t : t.multiply(o)
+                    }
+                    u.prototype.bitLength = function() {
+                        var t = this;
+                        return t.compareTo(o(0)) < 0 && (t = t.negate().subtract(o(1))), 0 === t.compareTo(o(0)) ? o(0) : o(C(t, o(2)).e).add(o(1))
+                    }, h.prototype.bitLength = p.prototype.bitLength = u.prototype.bitLength;
+                    var D = function(t, e, r, i) {
+                        r = r || n, t = String(t), i || (t = t.toLowerCase(), r = r.toLowerCase());
+                        var o, s = t.length,
+                            a = Math.abs(e),
+                            u = {};
+                        for (o = 0; o < r.length; o++) u[r[o]] = o;
+                        for (o = 0; o < s; o++) {
+                            if ("-" !== (l = t[o]) && (l in u && u[l] > = a)) {
+                                if ("1" === l && 1 === a) continue;
+                                throw new Error(l + " is not a valid digit in base " + e + ".")
+                            }
+                        }
+                        e = F(e);
+                        var p = [],
+                            h = "-" === t[0];
+                        for (o = h ? 1 : 0; o <
+                            t.length; o++) {
+                            var l;
+                            if ((l = t[o]) in u) p.push(F(u[l]));
+                            else {
+                                if ("<" !== l) throw new Error(l + " is not a valid character");
+                                var f = o;
+                                do {
+                                    o++
+                                } while (">" !== t[o] && o < t.length);
+                                p.push(F(t.slice(f + 1, o)))
+                            }
+                        }
+                        return j(p, e, h)
+                    };
+
+                    function j(t, e, r) {
+                        var i, o = a[0],
+                            n = a[1];
+                        for (i = t.length - 1; i >= 0; i--) o = o.add(t[i].times(n)), n = n.times(e);
+                        return r ? o.negate() : o
+                    }
+
+                    function K(t, e) {
+                        if ((e = o(e)).isZero()) {
+                            if (t.isZero()) return {
+                                value: [0],
+                                isNegative: !1
+                            };
+                            throw new Error("Cannot convert nonzero numbers to base 0.")
+                        }
+                        if (e.equals(-1)) {
+                            if (t.isZero()) return {
+                                value: [0],
+                                isNegative: !1
+                            };
+                            if (t.isNegative()) return {
+                                value: [].concat.apply([], Array.apply(null, Array(-t.toJSNumber())).map(Array.prototype.valueOf, [1, 0])),
+                                isNegative: !1
+                            };
+                            var r = Array.apply(null, Array(t.toJSNumber() - 1)).map(Array.prototype.valueOf, [0, 1]);
+                            return r.unshift([1]), {
+                                value: [].concat.apply([], r),
+                                isNegative: !1
+                            }
+                        }
+                        var i = !1;
+                        if (t.isNegative() && e.isPositive() && (i = !0, t = t.abs()), e.isUnit()) return t.isZero() ? {
+                            value: [0],
+                            isNegative: !1
+                        } : {
+                            value: Array.apply(null, Array(t.toJSNumber())).map(Number.prototype.valueOf, 1),
+                            isNegative: i
+                        };
+                        for (var n, s = [], a = t; a.isNegative() || a.compareAbs(e) >= 0;) {
+                            n = a.divmod(e), a = n.quotient;
+                            var u = n.remainder;
+                            u.isNegative() && (u = e.minus(u).abs(), a = a.next()), s.push(u.toJSNumber())
+                        }
+                        return s.push(a.toJSNumber()), {
+                            value: s.reverse(),
+                            isNegative: i
+                        }
+                    }
+
+                    function V(t, e, r) {
+                        var i = K(t, e);
+                        return (i.isNegative ? "-" : "") + i.value.map((function(t) {
+                            return function(t, e) {
+                                return t < (e = e || n).length ? e[t] : "<" + t + ">"
+                            }(t, r)
+                        })).join("")
+                    }
+
+                    function $(t) {
+                        if (l(+t)) {
+                            var e = +t;
+                            if (e === g(e)) return s ? new h(BigInt(e)) : new p(e);
+                            throw new Error("Invalid integer: " + t)
+                        }
+                        var r = "-" === t[0];
+                        r && (t = t.slice(1));
+                        var i = t.split(/e/i);
+                        if (i.length >
+                            2) throw new Error("Invalid integer: " + i.join("e"));
+                        if (2 === i.length) {
+                            var o = i[1];
+                            if ("+" === o[0] && (o = o.slice(1)), (o = +o) !== g(o) || !l(o)) throw new Error("Invalid integer: " + o + " is not a valid exponent.");
+                            var n = i[0],
+                                a = n.indexOf(".");
+                            if (a >= 0 && (o -= n.length - a - 1, n = n.slice(0, a) + n.slice(a + 1)), o <
+                                0) throw new Error("Cannot include negative exponent part for integers");
+                            t = n += new Array(o + 1).join("0")
+                        }
+                        if (!/^([0-9][0-9]*)$/.test(t)) throw new Error("Invalid integer: " + t);
+                        if (s) return new h(BigInt(r ? "-" + t : t));
+                        for (var f = [], y = t.length, v = y - 7; y >
+                            0;) f.push(+t.slice(v, y)), (v -= 7) <
+                            0 && (v = 0), y -= 7;
+                        return c(f), new u(f, r)
+                    }
+
+                    function F(t) {
+                        return "number" == typeof t ? function(t) {
+                            if (s) return new h(BigInt(t));
+                            if (l(t)) {
+                                if (t !== g(t)) throw new Error(t + " is not an integer.");
+                                return new p(t)
+                            }
+                            return $(t.toString())
+                        }(t) : "string" == typeof t ? $(t) : "bigint" == typeof t ? new h(t) : t
+                    }
+                    u.prototype.toArray = function(t) {
+                        return K(this, t)
+                    }, p.prototype.toArray = function(t) {
+                        return K(this, t)
+                    }, h.prototype.toArray = function(t) {
+                        return K(this, t)
+                    }, u.prototype.toString = function(e, r) {
+                        if (e === t && (e = 10), 10 !== e) return V(this, e, r);
+                        for (var i, o = this.value, n = o.length, s = String(o[--n]); --n > = 0;) i = String(o[n]), s += "0000000".slice(i.length) + i;
+                        return (this.sign ? "-" : "") + s
+                    }, p.prototype.toString = function(e, r) {
+                        return e === t && (e = 10), 10 != e ? V(this, e, r) : String(this.value)
+                    }, h.prototype.toString = p.prototype.toString, h.prototype.toJSON = u.prototype.toJSON = p.prototype.toJSON = function() {
+                        return this.toString()
+                    }, u.prototype.valueOf = function() {
+                        return parseInt(this.toString(), 10)
+                    }, u.prototype.toJSNumber = u.prototype.valueOf, p.prototype.valueOf = function() {
+                        return this.value
+                    }, p.prototype.toJSNumber = p.prototype.valueOf, h.prototype.valueOf = h.prototype.toJSNumber = function() {
+                        return parseInt(this.toString(), 10)
+                    };
+                    for (var Q = 0; Q <
+                        1e3; Q++) a[Q] = F(Q), Q >
+                        0 && (a[-Q] = F(-Q));
+                    return a.one = a[1], a.zero = a[0], a.minusOne = a[-1], a.max = U, a.min = G, a.gcd = J, a.lcm = function(t, e) {
+                        return t = F(t).abs(), e = F(e).abs(), t.divide(J(t, e)).multiply(e)
+                    }, a.isInstance = function(t) {
+                        return t instanceof u || t instanceof p || t instanceof h
+                    }, a.randBetween = function(t, r, i) {
+                        t = F(t), r = F(r);
+                        var o = i || Math.random,
+                            n = G(t, r),
+                            s = U(t, r).subtract(n).add(1);
+                        if (s.isSmall) return n.add(Math.floor(o() * s));
+                        for (var u = K(s, e).value, p = [], h = !0, l = 0; l <
+                            u.length; l++) {
+                            var f = h ? u[l] + (l + 1 < u.length ? u[l + 1] / e : 0) : e,
+                                y = g(o() * f);
+                            p.push(y), y < u[l] && (h = !1)
+                        }
+                        return n.add(a.fromArray(p, e, !1))
+                    }, a.fromArray = function(t, e, r) {
+                        return j(t.map(F), F(e || 10), r)
+                    }, a
+                }();
+                t.hasOwnProperty("exports") && (t.exports = o), void 0 === (i = function() {
+                    return o
+                }.call(e, r, e, t)) || (t.exports = i)
+            }
+        },
+        e = {};
+
+    function r(i) {
+        if (e[i]) return e[i].exports;
+        var o = e[i] = {
+            id: i,
+            loaded: !1,
+            exports: {}
+        };
+        return t[i](o, o.exports, r), o.loaded = !0, o.exports
+    }
+    r.n = function(t) {
+            var e = t && t.__esModule ? function() {
+                return t.default
+            } : function() {
+                return t
+            };
+            return r.d(e, {
+                a: e
+            }), e
+        }, r.d = function(t, e) {
+            for (var i in e) r.o(e, i) && !r.o(t, i) && Object.defineProperty(t, i, {
+                enumerable: !0,
+                get: e[i]
+            })
+        }, r.o = function(t, e) {
+            return Object.prototype.hasOwnProperty.call(t, e)
+        }, r.nmd = function(t) {
+            return t.paths = [], t.children || (t.children = []), t
+        },
+        function() {
+            "use strict";
+            var t, e = r(135),
+                i = r.n(e),
+                o = function() {
+                    function t(t) {
+                        this.n = i()(t.N), this.a = i()(t.A), this.t = t.T, this.curBase = this.a, this.curT = 0, this.isCancelled = !1
+                    }
+                    return t.prototype.run = function(t, e) {
+                        for (var r = Math.max(1, this.t / 1e3); !this.isDone();) this.doRepeatedSquaring(r), t(this.progress());
+                        e(this.answer())
+                    }, t.prototype.runAsync = function(t, e, r) {
+                        var i = this,
+                            o = function() {
+                                i.doRepeatedSquaring(r || 200), t(i.progress()), i.isCancelled || (i.isDone() ? e(i.answer()) : setTimeout(o, 0))
+                            };
+                        setTimeout(o, 0)
+                    }, t.prototype.cancelRunAsync = function() {
+                        this.isCancelled = !0
+                    }, t.prototype.doRepeatedSquaring = function(t) {
+                        for (var e = void 0 !== t ? Math.min(this.t, this.curT + t) : this.t; this.curT < e; this.curT += 1) this.curBase = this.curBase.square().mod(this.n)
+                    }, t.prototype.answer = function() {
+                        return this.isDone() ? this.curBase.toString() : null
+                    }, t.prototype.progress = function() {
+                        return this.curT / this.t
+                    }, t.prototype.isDone = function() {
+                        return this.curT === this.t
+                    }, t
+                }(),
+                n = function() {
+                    function t(t, e, r) {
+                        this.blocks = [], this.length = t, this.blockSize = Math.pow(2, Math.floor(Math.log2(e))), this.blockIndexShift = Math.log2(this.blockSize) >>> 0, this.blockOffsetMask = this.blockSize - 1 >>> 0, this.head = 0, r || this.allocate(this.length)
+                    }
+                    return t.prototype.allocate = function(t) {
+                        for (var e = 0; e < Math.ceil(t / this.blockSize); e++) this.blocks.push(new Uint32Array(this.blockSize))
+                    }, t.prototype.destructor = function() {
+                        this.blocks = []
+                    }, t.prototype.push = function(t) {
+                        this.blocks[this.head >
+                            >>
+                            this.blockIndexShift][this.head & this.blockOffsetMask] = t, this.head += 1
+                    }, t.prototype.concat = function(t) {
+                        for (var e = 0; e <
+                            t.blocks.length; e++) this.blocks.push(t.blocks[e]), this.head += this.blockSize
+                    }, t.prototype.get = function(t) {
+                        return this.blocks[t >
+                            >>
+                            this.blockIndexShift][t & this.blockOffsetMask]
+                    }, t.prototype.getHead = function() {
+                        return this.head
+                    }, t
+                }(),
+                s = function() {
+                    function t(t) {
+                        this.seed = parseInt(t, 10)
+                    }
+                    return t.prototype.hash = function(t) {
+                        for (var e = this.seed, r = 0; r <
+                            t.length; r++) {
+                            var i = t[r];
+                            i = (i = Math.imul(i, 3432918353)) << 15 | i >
+                                >>
+                                17, e = (e ^= i = Math.imul(i >>> 0, 461845907) >>> 0) << 13 | e >>> 19, e = 3864292196 + (Math.imul(e >>> 0, 5) >>> 0) >>> 0
+                        }
+                        return e ^= 4 * t.length, e ^= e >>> 16, e = Math.imul(e, 2246822507), e ^= e >>> 13, e = Math.imul(e, 3266489909), (e ^= e >>> 16) >>> 0
+                    }, t.prototype.hashOneValue = function(t) {
+                        var e = this.seed,
+                            r = t;
+                        return r = (r = Math.imul(r, 3432918353)) << 15 | r >>> 17, e = (e ^= r = Math.imul(r >>> 0, 461845907) >>> 0) << 13 | e >>> 19, e = 3864292196 + (Math.imul(e >>> 0, 5) >>> 0) >>> 0, e ^= 4, e ^= e >>> 16, e = Math.imul(e, 2246822507), e ^= e >>> 13, e = Math.imul(e, 3266489909), (e ^= e >>> 16) >>> 0
+                    }, t.prototype.hashTwoValues = function(t, e) {
+                        var r = this.seed,
+                            i = t;
+                        return i = (i = Math.imul(i, 3432918353)) << 15 | i >>> 17, r = (r ^= i = Math.imul(i >>> 0, 461845907) >>> 0) << 13 | r >>> 19, r = 3864292196 + (Math.imul(r >>> 0, 5) >>> 0) >>> 0, i = e, i = (i = Math.imul(i, 3432918353)) << 15 | i >>> 17, r = (r ^= i = Math.imul(i >>> 0, 461845907) >>> 0) << 13 | r >>> 19, r = 3864292196 + (Math.imul(r >>> 0, 5) >>> 0) >>> 0, r ^= 8, r ^= r >>> 16, r = Math.imul(r, 2246822507), r ^= r >>> 13, r = Math.imul(r, 3266489909), (r ^= r >>> 16) >>> 0
+                    }, t.prototype.hashThreeValues = function(t, e, r) {
+                        var i = this.seed,
+                            o = t;
+                        return o = (o = Math.imul(o, 3432918353)) << 15 | o >>> 17, i = (i ^= o = Math.imul(o >>> 0, 461845907) >>> 0) << 13 | i >>> 19, i = 3864292196 + (Math.imul(i >>> 0, 5) >>> 0) >>> 0, o = e, o = (o = Math.imul(o, 3432918353)) << 15 | o >>> 17, i = (i ^= o = Math.imul(o >>> 0, 461845907) >>> 0) << 13 | i >>> 19, i = 3864292196 + (Math.imul(i >>> 0, 5) >>> 0) >>> 0, o = r, o = (o = Math.imul(o, 3432918353)) << 15 | o >>> 17, i = (i ^= o = Math.imul(o >>> 0, 461845907) >>> 0) << 13 | i >>> 19, i = 3864292196 + (Math.imul(i >>> 0, 5) >>> 0) >>> 0, i ^= 12, i ^= i >>> 16, i = Math.imul(i, 2246822507), i ^= i >>> 13, i = Math.imul(i, 3266489909), (i ^= i >>> 16) >>> 0
+                    }, t
+                }(),
+                a = Math.pow(2, 18);
+            ! function(t) {
+                t[t.INIT_GRAPH = 0] = "INIT_GRAPH", t[t.PEBBLE_GRAPH = 1] = "PEBBLE_GRAPH", t[t.CREATE_MERKLE_TREE = 2] = "CREATE_MERKLE_TREE", t[t.GENERATE_SOLUTION = 3] = "GENERATE_SOLUTION"
+            }(t || (t = {}));
+            var u, p = function() {
+                function e(e) {
+                    this.layers = e.layers, this.rounds = e.rounds, this.hasher = new s(e.seed), this.merkleLayers = Math.pow(2, Math.floor(Math.log2(this.layers))), this.blockSize = Math.pow(2, Math.min(this.layers, 17)), this.layerSize = Math.pow(2, this.layers), this.prevLayer = new n(this.layerSize, this.blockSize, !0), this.curLayer = new n(this.layerSize, this.blockSize, !0), this.merkleTree = new n(2 * this.merkleLayers * this.layerSize - 1, this.blockSize, !0), this.step = t.INIT_GRAPH, this.pebblingLayer = 0, this.totalComputedNodes = (this.layers + this.merkleLayers + 1) * this.layerSize - 1, this.isCancelled = !1
+                }
+                return e.prototype.initPebbling = function(e) {
+                    0 === this.curLayer.getHead() && this.curLayer.allocate(this.layerSize);
+                    for (var r = 0; r < e && this.curLayer.getHead() < this.layerSize; ++r) this.curLayer.push(this.hasher.hashOneValue(this.curLayer.getHead()));
+                    this.curLayer.getHead() === this.layerSize && (this.pebblingLayer += 1, this.prevLayer = this.curLayer, this.curLayer = new n(this.layerSize, this.blockSize), this.step = t.PEBBLE_GRAPH)
+                }, e.prototype.pebble = function(e) {
+                    for (var r = 0; r < e && this.curLayer.getHead() < this.layerSize; ++r) {
+                        var i = this.curLayer.getHead() | 1 << this.layers - this.pebblingLayer,
+                            o = this.curLayer.getHead() & ~(1 << this.layers - this.pebblingLayer);
+                        this.curLayer.push(this.hasher.hashThreeValues(this.curLayer.getHead() + this.pebblingLayer * this.layerSize, this.prevLayer.get(i), this.prevLayer.get(o)))
+                    }
+                    this.curLayer.getHead() === this.layerSize && (this.layers - this.pebblingLayer < this.merkleLayers && this.merkleTree.concat(this.curLayer), this.pebblingLayer += 1, this.prevLayer = this.curLayer, this.curLayer = new n(this.layerSize, this.blockSize)), this.pebblingLayer === this.layers + 1 && (this.prevLayer.destructor(), this.curLayer.destructor(), this.step = t.CREATE_MERKLE_TREE, this.merkleTree.allocate(this.merkleLayers * this.layerSize - 1))
+                }, e.prototype.createMerkleTree = function(e) {
+                    for (var r = 2 * (this.merkleTree.getHead() - Math.ceil(this.merkleTree.length / 2)), i = 0; i < e && this.merkleTree.getHead() < this.merkleTree.length; i++) this.merkleTree.push(this.hasher.hashTwoValues(this.merkleTree.get(r), this.merkleTree.get(r + 1))), r += 2;
+                    this.merkleTree.getHead() === this.merkleTree.length && (this.step = t.GENERATE_SOLUTION)
+                }, e.prototype.dispatch = function(e) {
+                    try {
+                        switch (this.step) {
+                            case t.INIT_GRAPH:
+                                this.initPebbling(e);
+                                break;
+                            case t.PEBBLE_GRAPH:
+                                this.pebble(e);
+                                break;
+                            case t.CREATE_MERKLE_TREE:
+                                this.createMerkleTree(e)
+                        }
+                    } catch (t) {
+                        return t instanceof Error ? t.message : String(t)
+                    }
+                    return null
+                }, e.prototype.run = function(t, e, r) {
+                    for (var i = Math.ceil(this.totalComputedNodes / 1e3); !this.isDone();) {
+                        var o = this.dispatch(i);
+                        if (null !== o) return void r(o);
+                        t(this.progress())
+                    }
+                    e(this.answer()), this.merkleTree.destructor()
+                }, e.prototype.runAsync = function(t, e, r, i) {
+                    var o = this,
+                        n = function() {
+                            var s = o.dispatch(i || a);
+                            null === s ? (t(o.progress()), o.isCancelled || (o.isDone() ? e(o.answer()) : setTimeout(n, 0))) : r(s)
+                        };
+                    setTimeout(n, 0), this.merkleTree.destructor()
+                }, e.prototype.cancelRunAsync = function() {
+                    this.isCancelled = !0
+                }, e.prototype.generateChallenge = function(t) {
+                    var e = this.hasher.hashOneValue(t),
+                        r = (this.layers - this.merkleLayers + 1 + 1) * this.layerSize;
+                    return e % ((this.merkleLayers - 1) * this.layerSize) + r
+                }, e.prototype.open = function(t) {
+                    var e = [],
+                        r = t - (this.layers - this.merkleLayers + 1) * this.layerSize;
+                    e.push(this.merkleTree.get(r));
+                    for (var i = 0; i < this.layers + Math.log2(this.merkleLayers); i++) r = r % 2 == 0 ? r + 1 : r - 1, e.push(this.merkleTree.get(r)), r = this.merkleTree.length - Math.floor((this.merkleTree.length - r) / 2);
+                    return e
+                }, e.prototype.answer = function() {
+                    if (!this.isDone()) return null;
+                    for (var t = [], e = this.merkleTree.get(this.merkleTree.length - 1), r = this.generateChallenge(e), i = 0; i < this.rounds; i++) {
+                        var o = this.open(r),
+                            n = r >>> this.layers,
+                            s = (r | 1 << this.layers - n) - this.layerSize,
+                            a = (r & ~(1 << this.layers - n)) - this.layerSize;
+                        o = (o = o.concat(this.open(s))).concat(this.open(a)), t.push(o.map((function(t) {
+                            return t.toString()
+                        }))), r = this.generateChallenge(r)
+                    }
+                    return {
+                        commitment: e.toString(),
+                        solutions: t
+                    }
+                }, e.prototype.progress = function() {
+                    return (this.pebblingLayer * this.layerSize + this.curLayer.getHead() + Math.max(this.merkleTree.getHead() - this.merkleLayers * this.layerSize, 0)) / this.totalComputedNodes
+                }, e.prototype.isDone = function() {
+                    return this.step === t.GENERATE_SOLUTION
+                }, e
+            }();
+            ! function(t) {
+                t[t.TIME_LOCK_PUZZLE = 0] = "TIME_LOCK_PUZZLE", t[t.GRAPH_PEBBLING_PUZZLE = 1] = "GRAPH_PEBBLING_PUZZLE"
+            }(u || (u = {}));
+            var h = self,
+                l = function(t) {
+                    h.postMessage({
+                        progress: t
+                    })
+                },
+                f = function(t) {
+                    h.postMessage({
+                        progress: 1,
+                        answer: t
+                    })
+                },
+                y = function(t) {
+                    h.postMessage({
+                        progress: 0,
+                        error: t
+                    })
+                };
+            h.onmessage = function(t) {
+                var e = JSON.parse(t.data);
+                switch (e.solverType) {
+                    case u.TIME_LOCK_PUZZLE:
+                        new o(e.solverParameters).run(l, f);
+                        break;
+                    case u.GRAPH_PEBBLING_PUZZLE:
+                        new p(e.solverParameters).run(l, f, y);
+                        break;
+                    default:
+                        e.solverType
+                }
+            }
+        }()
+}();
+//# sourceMappingURL=https://js.rbxcdn.com/cd0f23874ed2fb82c9bb747d84d03616-challengeWebWorkers.bundle.min.js.map
+
+/* Bundle detector */
+window.Roblox && window.Roblox.BundleDetector && window.Roblox.BundleDetector.bundleDetected("ChallengeWebWorkers");

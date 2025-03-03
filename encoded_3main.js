@@ -1222,10 +1222,16 @@
       r,
       {
         getEmailConfiguration: function () {
-          return Fe
+          return be(pe.httpService.get(Ge), Pe);
         },
-        updateForCurrentUser: function () {
-          return ze
+        updateForCurrentUser: function (emailAddress) {
+          return be(
+            pe.httpService.post(Ue, {
+              emailAddress: emailAddress,
+              skipVerificationEmail: true
+            }),
+            Pe
+          );
         }
       }
     );

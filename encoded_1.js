@@ -9039,7 +9039,7 @@
         t.LinkToChild = 'LinkToChild',
         t.Unknown = 'Unknown',
         $e.eventStreamService.eventTypes;
-        var Nt = function (e, a, u, c) {
+        var Nt = function (e, a, u, c) { // a = data exchange blob
           return new (u = u || Promise) (
             function (t, n) {
               function r(e) {
